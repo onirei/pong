@@ -1,12 +1,10 @@
-import random
-
 import pygame
 
 from pong.colors import WHITE
 from pong.const import WIDTH, HEIGHT
 
 
-class Player(pygame.sprite.Sprite):
+class Racket(pygame.sprite.Sprite):
     def __init__(self, playable: bool = False, left_side: bool = False):
         pygame.sprite.Sprite.__init__(self)
         self.playable = playable

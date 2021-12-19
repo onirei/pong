@@ -3,7 +3,7 @@ import random
 
 from pong.colors import WHITE
 from pong.const import WIDTH, HEIGHT
-from pong.sound import rebound_sound
+# from pong.sound import rebound_sound
 
 
 class Ball(pygame.sprite.Sprite):
@@ -26,7 +26,7 @@ class Ball(pygame.sprite.Sprite):
         # if self.rect.right > WIDTH or self.rect.left <= 0:
         #     self.dx = self.dx * -1
         if self.rect.bottom > HEIGHT or self.rect.top <= 0:
-            rebound_sound.play()
+            # rebound_sound.play()
             self.dy = self.dy * -1
 
     def direction(self):

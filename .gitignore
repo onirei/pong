@@ -156,3 +156,5 @@ dmypy.json
 .idea/httpRequests
 
 /.idea/*
+
+/pong/temp/
