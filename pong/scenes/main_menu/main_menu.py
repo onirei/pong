@@ -37,17 +37,17 @@ class MainMenu(AbstractMenuScene):
             position=3,
             cords=menu_cords,
             align='left',
-            action=partial(self.game.scene.load, scene_name='menu_options')
+            action=partial(self.game.scene.load, scene_name='menu_options'),
         )
         menu_credits = MenuItem(
             name='credits',
             position=4,
             cords=menu_cords,
             align='left',
-            action=partial(self.game.scene.load, scene_name='menu_credits')
+            action=partial(self.game.scene.load, scene_name='menu_credits'),
         )
         menu_exit = MenuItem(
-            name='exit game', position=5, cords=menu_cords, align='left', action=self._stop_scene
+            name='exit game', position=5, cords=menu_cords, align='left', action=self._stop_scene,
         )
         menu_sprites = pygame.sprite.Group(menu_1p, menu_2p, menu_options, menu_credits, menu_exit)
         cursor = MenuCursor(menu_elements=(menu_1p, menu_2p, menu_options, menu_credits, menu_exit))

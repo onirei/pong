@@ -13,15 +13,28 @@ class MenuOptions(AbstractMenuScene):
         self.game.screen.fill(BLACK)
         menu_cords = (self.game.width / 5, self.game.height / 5)
         menu_fullscreen = MenuItem(
-            name='fullscreen', position=1, cords=menu_cords, align='left', action=self._change_screen_mode
+            name='fullscreen', position=1, cords=menu_cords, align='left', action=self._change_screen_mode,
+        )
+        menu_volume = MenuItem(
+            name='volume', position=2, cords=menu_cords, align='left', action=None,
+        )
+        menu_keys = MenuItem(
+            name='keys',
+            position=3,
+            cords=menu_cords,
+            align='left',
+            action=partial(self.game.scene.load, scene_name='menu_keys'),
+        )
+        menu_difficult = MenuItem(
+            name='difficult', position=4, cords=menu_cords, align='left', action=None,
         )
         menu_back = MenuItem(
-            name='back', position=2, cords=menu_cords, align='left', action=self._stop_scene
+            name='back', position=5, cords=menu_cords, align='left', action=self._stop_scene,
         )
 
-        menu_sprites = pygame.sprite.Group(menu_fullscreen, menu_back)
-        cursor = MenuCursor(menu_elements=(menu_fullscreen, menu_back))
-        all_sprites = pygame.sprite.Group(menu_fullscreen, cursor, menu_back)
+        menu_sprites = pygame.sprite.Group(menu_fullscreen, menu_volume, menu_keys, menu_difficult, menu_back)
+        cursor = MenuCursor(menu_elements=(menu_fullscreen, menu_volume, menu_keys, menu_difficult, menu_back))
+        all_sprites = pygame.sprite.Group(menu_fullscreen, menu_volume, menu_keys, menu_difficult, menu_back, cursor)
         self.update_main_menu_options(cursor=cursor)
 
         self.running = True

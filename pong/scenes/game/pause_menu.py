@@ -2,7 +2,7 @@ from functools import partial
 
 import pygame
 
-from pong.colors import BLACK, WHITE, GRAY
+from pong.colors import WHITE
 from pong.const import FPS
 from pong.scenes.base import AbstractMenuScene
 from pong.sprites.menu import MenuCursor, MenuItem

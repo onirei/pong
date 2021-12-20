@@ -69,7 +69,7 @@ class MenuCursor(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         first_element = menu_elements[0]
         # first_element.rerender(WHITE)
-        self.image.fill(RED)
+        # self.image.fill(RED)
         self.rect.center = (first_element.rect.centerx, first_element.rect.y)
         self.menu_elements = menu_elements
         self.position = 1
