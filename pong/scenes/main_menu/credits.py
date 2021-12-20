@@ -9,6 +9,7 @@ class MenuCredits(AbstractMenuScene):
     def scene(self, *args, **kwargs):
         self.game.screen.fill(BLACK)
 
+        self.running = True
         while self.running:
             self.game.clock.tick(FPS)
             for event in pygame.event.get():

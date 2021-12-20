@@ -26,7 +26,8 @@ class MenuItem(pygame.sprite.Sprite):
         self.font = pygame.font.Font('assets/fonts/bit5x5.ttf', font_size)
         self.menu_text = self.font.render(name, False, GRAY)
         rect = self.menu_text.get_rect()
-        self.image = pygame.Surface((rect.width, rect.height))
+        self.image = pygame.Surface((rect.width, rect.height), pygame.SRCALPHA)
+        self.image.convert_alpha()
         self.rect = self.image.get_rect()
 
         if align == 'left':

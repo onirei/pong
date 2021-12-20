@@ -16,7 +16,7 @@ class MenuOptions(AbstractMenuScene):
             name='fullscreen', position=1, cords=menu_cords, align='left', action=self._change_screen_mode
         )
         menu_back = MenuItem(
-            name='back', position=2, cords=menu_cords, align='left', action=self._exit
+            name='back', position=2, cords=menu_cords, align='left', action=self._stop_scene
         )
 
         menu_sprites = pygame.sprite.Group(menu_fullscreen, menu_back)
@@ -24,6 +24,7 @@ class MenuOptions(AbstractMenuScene):
         all_sprites = pygame.sprite.Group(menu_fullscreen, cursor, menu_back)
         self.update_main_menu_options(cursor=cursor)
 
+        self.running = True
         while self.running:
             self.game.clock.tick(FPS)
             for event in pygame.event.get():

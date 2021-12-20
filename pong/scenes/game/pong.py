@@ -30,6 +30,8 @@ class Pong(AbstractGameScene):
         if pygame.joystick.get_count():
             gamepad = pygame.joystick.Joystick(0)
             gamepad.init()
+
+        self.running = True
         while self.running:
             self.game.clock.tick(FPS)
             for event in pygame.event.get():

@@ -30,8 +30,13 @@ class AbstractMenuScene(abc.ABC):
                 self.game.assets.rebound_sound.play()
                 collide.update(action=True)
 
-    def _exit(self):
+    def _stop_scene(self):
         self.running = False
+
+    @staticmethod
+    def _exit():
+        pygame.quit()
+        quit()
 
     @abc.abstractmethod
     def scene(self):

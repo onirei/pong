@@ -10,59 +10,47 @@ from pong.sprites.menu import MenuCursor, MenuItem
 
 class GamePause(AbstractMenuScene):
     def scene(self, *args, **kwargs):
-        clock = pygame.time.Clock()
-
+        self.running = True
         blur = pygame.Surface((self.game.width, self.game.height), pygame.SRCALPHA)
-        blur.fill((0, 0, 0, 190))
+        blur.fill((20, 20, 20, 190))
         self.game.screen.blit(blur, (0, 0))
-
-        font = pygame.font.SysFont('Comic Sans MS', 56)
-        score_text = font.render('Paused', False, WHITE)
-        score = score_text.get_rect()
-        score.center = (self.game.width / 2, self.game.height / 2)
-        self.game.screen.blit(score_text, score)
-
-        menu_resume = MenuItem(name='resume', position=1)
-        menu_main_screen = MenuItem(name='main screen', position=1)
-        menu_exit = MenuItem(name='exit', position=2)
-        menu_items = pygame.sprite.Group(menu_resume, menu_main_screen, menu_exit)
-
+        pause_text = self.game.assets.font.render('Paused', False, WHITE)
+        pause_rect = pause_text.get_rect()
+        pause_rect.center = (self.game.width / 2, self.game.height / 4)
+        self.game.screen.blit(pause_text, pause_rect)
+        menu_cords = (self.game.width / 5 * 1.95, self.game.height / 2)
+        menu_resume = MenuItem(
+            name='resume',
+            position=1,
+            cords=menu_cords,
+            align='left',
+            action=self._stop_scene,
+        )
+        menu_main_screen = MenuItem(
+            name='main screen',
+            position=2,
+            cords=menu_cords,
+            align='left',
+            action=partial(self.game.scene.load, scene_name='main_menu'),
+        )
+        menu_exit = MenuItem(
+            name='exit',
+            position=3,
+            cords=menu_cords,
+            align='left',
+            action=self._exit,
+        )
+        menu_sprites = pygame.sprite.Group(menu_resume, menu_main_screen, menu_exit)
         cursor = MenuCursor(menu_elements=(menu_resume, menu_main_screen, menu_exit))
+        all_sprites = pygame.sprite.Group(menu_resume, menu_main_screen, menu_exit, cursor)
 
-        all_sprites = pygame.sprite.Group()
-        all_sprites.add(menu_resume, menu_exit, cursor)
-
-        pause = True
-        while pause:
+        self.running = True
+        while self.running:
+            self.game.clock.tick(FPS)
             for event in pygame.event.get():
-                self.game.clock.tick(FPS)
                 if event.type == pygame.QUIT:
                     pygame.quit()
-
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        self.game.assets.rebound_sound.play()
-                        pause = False
-                    cursor.navigate(event)
-
-                    for sprite in menu_items:
-                        sprite.rerender(GRAY)
-
-                    collide = pygame.sprite.spritecollideany(cursor, menu_items)
-                    if collide:
-                        self.game.assets.rebound_sound.play()
-                        collide.rerender(WHITE)
-
-                    if event.key in (pygame.K_SPACE, pygame.K_RETURN):
-                        self.game.assets.rebound_sound.play()
-                        if collide is menu_exit:
-                            pygame.quit()
-                            quit()
-                        if collide is menu_resume:
-                            pause = False
-                        if collide is full_screen:
-                            screen = pygame.display.set_mode((self.game.width, self.game.height), pygame.FULLSCREEN)
-
-            all_sprites.update()
+                    quit()
+                self._menu_navigate(event=event, cursor=cursor, menu_sprites=menu_sprites)
             all_sprites.draw(self.game.screen)
             pygame.display.flip()
