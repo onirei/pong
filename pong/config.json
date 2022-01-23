@@ -1,1 +1,1 @@
-{"fullscreen": false, "volume":  10, "difficult":  "normal"}
+{"fullscreen": false, "volume": 0.3, "difficult": "hard", "key_map": {"player 1 up": {"joy": false, "axis": null, "key": 1073741906}, "player 1 down": {"joy": false, "axis": null, "key": 1073741905}, "player 2 up": {"joy": true, "axis": 1, "key": -1}, "player 2 down": {"joy": true, "axis": 1, "key": 1}}}

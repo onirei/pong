@@ -1,6 +1,8 @@
 from typing import TYPE_CHECKING, NoReturn
 
-from pong.scenes.game.pause_menu import GamePause
+import pygame as pg
+
+from pong.scenes.pause_menu.pause_menu import GamePause
 from pong.scenes.game.pong import Pong
 from pong.scenes.main_menu.credits import MenuCredits
 from pong.scenes.main_menu.keys import MenuKeys
@@ -23,5 +25,6 @@ class SceneManager:
         }
 
     def load(self, scene_name: str, *args, **kwargs) -> NoReturn:
+        pg.key.set_repeat(200)
         scene = self.scene_list.get(scene_name)
         scene(*args, **kwargs) if callable(scene) else None
