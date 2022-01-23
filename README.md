@@ -37,13 +37,13 @@ Run `main.py`
 
   - `back` - return to option menu screen
 
-- `credits` - credits screen (scroll can be accelerated by a space)
+- `credits` - credits screen (scroll can be accelerated by a spacebar)
 
 - `exit game` - exit from game
 
 ###In game:
 
-- `paused`
+- `paused` - can be caused by the spacebar
 
   - `resume` - resume game
 
