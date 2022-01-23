@@ -41,7 +41,7 @@ Run `main.py`
 
 - `exit game` - exit from game
 
-###In game:
+### In game:
 
 - `paused` - can be caused by the spacebar
 
