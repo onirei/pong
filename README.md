@@ -1,17 +1,17 @@
 # Pong
 
-##Description
+## Description
 Pong game on pygame
 
-##Install
+## Install
 Clone from github
 
 Install libs by poetry
 
 Run `main.py`
 
-##Content
-###Main menu:
+## Content
+### Main menu:
 
 - `1 player` - solo game mode with bot
 
