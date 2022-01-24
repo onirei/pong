@@ -2,13 +2,14 @@ import pygame as pg
 
 from pong.colors import BLACK, WHITE
 from pong.const import FPS, HEIGHT, JOY_BUTTON_CROSS, JOY_BUTTON_START, WIDTH
+from pong.helper import resource_path
 from pong.scenes.base import AbstractMenuScene
 
 
 class MenuCredits(AbstractMenuScene):
     def scene(self, *args, **kwargs):
         self.game.screen.fill(BLACK)
-        with open('pong/credits.txt', 'r') as file:
+        with open(resource_path('common/credits.txt'), 'r') as file:
             lines = file.read().splitlines()
         credits_text = pg.Surface((WIDTH, len(lines) * 30))
         for i, line in enumerate(lines):

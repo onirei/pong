@@ -7,6 +7,7 @@ import pygame as pg
 from pong.assets import FontAssets, SFXAssets
 from pong.colors import GREEN, WHITE
 from pong.const import HEIGHT, WIDTH
+from pong.helper import resource_path
 from pong.scenes.scene_manager import SceneManager
 
 
@@ -40,12 +41,12 @@ class GameCore:
 
     @staticmethod
     def read_config() -> Dict:
-        with open('pong/config.json', 'r') as json_conf:
+        with open(resource_path('config/config.json'), 'r') as json_conf:
             conf = json.load(json_conf)
             return conf
 
     def write_config(self) -> NoReturn:
-        with open('pong/config.json', 'w') as json_conf:
+        with open(resource_path('config/config.json'), 'w') as json_conf:
             json.dump(self.conf, json_conf)
 
     def _debug(self, *args, **kwargs):
